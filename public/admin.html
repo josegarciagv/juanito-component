@@ -425,14 +425,18 @@
       .links-list,
       .services-list,
       .contact-info-list,
-      .faqs-list {
+      .faqs-list,
+      .products-list,
+      .blog-posts-list {
         margin-top: 1.5rem;
       }
 
       .link-item,
       .service-item,
       .contact-info-item,
-      .faq-item {
+      .faq-item,
+      .product-item,
+      .blog-post-item {
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -445,7 +449,9 @@
       .link-info,
       .service-info,
       .contact-info-info,
-      .faq-info {
+      .faq-info,
+      .product-info,
+      .blog-post-info {
         display: flex;
         align-items: center;
         flex: 1;
@@ -454,7 +460,9 @@
       .link-icon,
       .service-icon,
       .contact-info-icon,
-      .faq-icon {
+      .faq-icon,
+      .product-icon,
+      .blog-post-icon {
         width: 40px;
         height: 40px;
         border-radius: 50%;
@@ -469,21 +477,27 @@
       .link-content,
       .service-content,
       .contact-info-content,
-      .faq-content {
+      .faq-content,
+      .product-content,
+      .blog-post-content {
         flex: 1;
       }
 
       .link-text,
       .service-title,
       .contact-info-title,
-      .faq-question {
+      .faq-question,
+      .product-title,
+      .blog-post-title {
         font-weight: 500;
       }
 
       .link-url,
       .service-description,
       .contact-info-value,
-      .faq-answer {
+      .faq-answer,
+      .product-description,
+      .blog-post-date {
         color: #666;
         font-size: 0.875rem;
         margin-top: 0.25rem;
@@ -492,7 +506,9 @@
       .link-actions,
       .service-actions,
       .contact-info-actions,
-      .faq-actions {
+      .faq-actions,
+      .product-actions,
+      .blog-post-actions {
         display: flex;
         gap: 0.5rem;
       }
@@ -501,7 +517,9 @@
       .add-service-form,
       .add-contact-info-form,
       .add-faq-form,
-      .section-titles-form {
+      .section-titles-form,
+      .add-product-form,
+      .add-blog-post-form {
         margin-top: 1.5rem;
         padding-top: 1.5rem;
         border-top: 1px solid var(--border-color);
@@ -665,6 +683,58 @@
         color: #666;
       }
 
+      /* New styles for products and blog posts */
+      .product-price {
+        font-weight: 600;
+        color: var(--primary-color);
+        margin-top: 0.25rem;
+      }
+
+      .product-image-preview,
+      .blog-post-image-preview {
+        width: 60px;
+        height: 60px;
+        border-radius: 0.5rem;
+        object-fit: cover;
+        margin-right: 1rem;
+      }
+
+      .blog-post-content-preview {
+        max-height: 100px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin-top: 0.5rem;
+        font-size: 0.875rem;
+        color: #666;
+      }
+
+      .tabs {
+        display: flex;
+        border-bottom: 1px solid var(--border-color);
+        margin-bottom: 1.5rem;
+      }
+
+      .tab {
+        padding: 0.75rem 1.5rem;
+        cursor: pointer;
+        border-bottom: 2px solid transparent;
+        font-weight: 500;
+        transition: all 0.3s ease;
+      }
+
+      .tab.active {
+        border-bottom-color: var(--primary-color);
+        color: var(--primary-color);
+      }
+
+      .tab-content {
+        display: none;
+      }
+
+      .tab-content.active {
+        display: block;
+      }
+
       @keyframes spin {
         to {
           transform: rotate(360deg);
@@ -778,6 +848,26 @@
             >
               <i class="fas fa-briefcase sidebar-nav-icon"></i>
               <span class="sidebar-nav-text">Services</span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item">
+            <a
+              href="#products"
+              class="sidebar-nav-link"
+              data-section="products-section"
+            >
+              <i class="fas fa-shopping-cart sidebar-nav-icon"></i>
+              <span class="sidebar-nav-text">Products</span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item">
+            <a
+              href="#blog"
+              class="sidebar-nav-link"
+              data-section="blog-section"
+            >
+              <i class="fas fa-blog sidebar-nav-icon"></i>
+              <span class="sidebar-nav-text">Blog</span>
             </a>
           </li>
           <li class="sidebar-nav-item">
@@ -958,6 +1048,30 @@
               </div>
 
               <div class="form-group">
+                <label for="products-section-title" class="form-label"
+                  >Products Section Title</label
+                >
+                <input
+                  type="text"
+                  id="products-section-title"
+                  class="form-input"
+                  placeholder="My Products"
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="blog-section-title" class="form-label"
+                  >Blog Section Title</label
+                >
+                <input
+                  type="text"
+                  id="blog-section-title"
+                  class="form-input"
+                  placeholder="Latest Blog Posts"
+                />
+              </div>
+
+              <div class="form-group">
                 <label for="gallery-section-title" class="form-label"
                   >Gallery Section Title</label
                 >
@@ -1108,6 +1222,39 @@
               </div>
 
               <div class="form-group">
+                <label for="products-bg-color" class="form-label"
+                  >Products Section Background</label
+                >
+                <div class="color-input-container">
+                  <div
+                    class="color-preview"
+                    id="products-bg-color-preview"
+                  ></div>
+                  <input
+                    type="color"
+                    id="products-bg-color"
+                    class="form-input"
+                    value="#f9fafb"
+                  />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="blog-bg-color" class="form-label"
+                  >Blog Section Background</label
+                >
+                <div class="color-input-container">
+                  <div class="color-preview" id="blog-bg-color-preview"></div>
+                  <input
+                    type="color"
+                    id="blog-bg-color"
+                    class="form-input"
+                    value="#ffffff"
+                  />
+                </div>
+              </div>
+
+              <div class="form-group">
                 <label for="faq-bg-color" class="form-label"
                   >FAQ Section Background</label
                 >
@@ -1236,6 +1383,243 @@
                 >
                   <span id="add-service-loading" class="loading hidden"></span>
                   <span id="add-service-button-text">Add Service</span>
+                </button>
+              </form>
+            </div>
+          </div>
+        </section>
+
+        <!-- Products Section - NEW -->
+        <section id="products-section" class="section hidden">
+          <div class="card">
+            <div class="card-header">
+              <h2 class="card-title">Products</h2>
+            </div>
+
+            <div class="products-list" id="products-list">
+              <!-- Products will be loaded dynamically -->
+            </div>
+
+            <div class="add-product-form">
+              <h3 class="form-title">Add New Product</h3>
+              <form id="add-product-form">
+                <div class="form-group">
+                  <label for="product-title" class="form-label">Title</label>
+                  <input
+                    type="text"
+                    id="product-title"
+                    class="form-input"
+                    placeholder="Enter product title"
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="product-description" class="form-label"
+                    >Description</label
+                  >
+                  <textarea
+                    id="product-description"
+                    class="form-textarea"
+                    placeholder="Enter product description"
+                  ></textarea>
+                </div>
+
+                <div class="form-group">
+                  <label for="product-price" class="form-label">Price</label>
+                  <input
+                    type="text"
+                    id="product-price"
+                    class="form-input"
+                    placeholder="Enter product price (e.g. $99.99)"
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="product-button-text" class="form-label"
+                    >Button Text</label
+                  >
+                  <input
+                    type="text"
+                    id="product-button-text"
+                    class="form-input"
+                    placeholder="Enter button text (e.g. Learn More, Buy Now)"
+                    value="Learn More"
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="product-url" class="form-label"
+                    >Product URL (optional)</label
+                  >
+                  <input
+                    type="url"
+                    id="product-url"
+                    class="form-input"
+                    placeholder="Enter product URL"
+                  />
+                </div>
+
+                <div class="tabs">
+                  <div class="tab active" data-tab="product-image-tab">
+                    Image
+                  </div>
+                  <div class="tab" data-tab="product-icon-tab">Icon</div>
+                </div>
+
+                <div class="tab-content active" id="product-image-tab">
+                  <div class="form-group">
+                    <label for="product-image" class="form-label"
+                      >Product Image</label
+                    >
+                    <div class="image-upload-container">
+                      <img
+                        src="/placeholder.svg"
+                        alt="Product"
+                        class="image-preview"
+                        id="product-image-preview"
+                      />
+                      <div class="file-input-wrapper">
+                        <button type="button" class="button secondary-button">
+                          <i class="fas fa-upload button-icon"></i>
+                          Choose Image
+                        </button>
+                        <input
+                          type="file"
+                          id="product-image"
+                          class="file-input"
+                          accept="image/*"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="tab-content" id="product-icon-tab">
+                  <div class="form-group">
+                    <label for="product-icon" class="form-label">Icon</label>
+                    <input
+                      type="text"
+                      id="product-icon-search"
+                      class="form-input"
+                      placeholder="Search icons..."
+                      style="margin-bottom: 1rem"
+                    />
+
+                    <div class="icon-grid" id="product-icon-grid">
+                      <!-- Icons will be loaded dynamically -->
+                    </div>
+
+                    <input type="hidden" id="product-icon" value="box" />
+                  </div>
+                </div>
+
+                <button
+                  type="submit"
+                  class="button primary-button"
+                  id="add-product-button"
+                >
+                  <span id="add-product-loading" class="loading hidden"></span>
+                  <span id="add-product-button-text">Add Product</span>
+                </button>
+              </form>
+            </div>
+          </div>
+        </section>
+
+        <!-- Blog Section - NEW -->
+        <section id="blog-section" class="section hidden">
+          <div class="card">
+            <div class="card-header">
+              <h2 class="card-title">Blog Posts</h2>
+            </div>
+
+            <div class="blog-posts-list" id="blog-posts-list">
+              <!-- Blog posts will be loaded dynamically -->
+            </div>
+
+            <div class="add-blog-post-form">
+              <h3 class="form-title">Add New Blog Post</h3>
+              <form id="add-blog-post-form">
+                <div class="form-group">
+                  <label for="blog-post-title" class="form-label">Title</label>
+                  <input
+                    type="text"
+                    id="blog-post-title"
+                    class="form-input"
+                    placeholder="Enter blog post title"
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="blog-post-date" class="form-label">Date</label>
+                  <input
+                    type="text"
+                    id="blog-post-date"
+                    class="form-input"
+                    placeholder="Enter date (e.g. January 1, 2023)"
+                    value=""
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="blog-post-excerpt" class="form-label"
+                    >Excerpt (optional)</label
+                  >
+                  <textarea
+                    id="blog-post-excerpt"
+                    class="form-textarea"
+                    placeholder="Enter a short excerpt for the blog post"
+                    style="min-height: 80px"
+                  ></textarea>
+                </div>
+
+                <div class="form-group">
+                  <label for="blog-post-content" class="form-label"
+                    >Content</label
+                  >
+                  <textarea
+                    id="blog-post-content"
+                    class="form-textarea"
+                    placeholder="Enter blog post content"
+                  ></textarea>
+                </div>
+
+                <div class="form-group">
+                  <label for="blog-post-image" class="form-label"
+                    >Blog Post Image</label
+                  >
+                  <div class="image-upload-container">
+                    <img
+                      src="/placeholder.svg"
+                      alt="Blog Post"
+                      class="image-preview"
+                      id="blog-post-image-preview"
+                    />
+                    <div class="file-input-wrapper">
+                      <button type="button" class="button secondary-button">
+                        <i class="fas fa-upload button-icon"></i>
+                        Choose Image
+                      </button>
+                      <input
+                        type="file"
+                        id="blog-post-image"
+                        class="file-input"
+                        accept="image/*"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <button
+                  type="submit"
+                  class="button primary-button"
+                  id="add-blog-post-button"
+                >
+                  <span
+                    id="add-blog-post-loading"
+                    class="loading hidden"
+                  ></span>
+                  <span id="add-blog-post-button-text">Add Blog Post</span>
                 </button>
               </form>
             </div>
@@ -1549,6 +1933,11 @@
       const servicesSectionTitleInput = document.getElementById(
         "services-section-title"
       );
+      const productsSectionTitleInput = document.getElementById(
+        "products-section-title"
+      );
+      const blogSectionTitleInput =
+        document.getElementById("blog-section-title");
       const gallerySectionTitleInput = document.getElementById(
         "gallery-section-title"
       );
@@ -1569,6 +1958,8 @@
       const accentColorInput = document.getElementById("accent-color");
       const galleryBgColorInput = document.getElementById("gallery-bg-color");
       const servicesBgColorInput = document.getElementById("services-bg-color");
+      const productsBgColorInput = document.getElementById("products-bg-color");
+      const blogBgColorInput = document.getElementById("blog-bg-color");
       const faqBgColorInput = document.getElementById("faq-bg-color");
       const contactBgColorInput = document.getElementById("contact-bg-color");
       const backgroundColorPreview = document.getElementById(
@@ -1583,6 +1974,12 @@
       );
       const servicesBgColorPreview = document.getElementById(
         "services-bg-color-preview"
+      );
+      const productsBgColorPreview = document.getElementById(
+        "products-bg-color-preview"
+      );
+      const blogBgColorPreview = document.getElementById(
+        "blog-bg-color-preview"
       );
       const faqBgColorPreview = document.getElementById("faq-bg-color-preview");
       const contactBgColorPreview = document.getElementById(
@@ -1615,6 +2012,52 @@
       const addServiceLoading = document.getElementById("add-service-loading");
       const addServiceButtonText = document.getElementById(
         "add-service-button-text"
+      );
+
+      // Products Elements - NEW
+      const productsList = document.getElementById("products-list");
+      const addProductForm = document.getElementById("add-product-form");
+      const productTitleInput = document.getElementById("product-title");
+      const productDescriptionInput = document.getElementById(
+        "product-description"
+      );
+      const productPriceInput = document.getElementById("product-price");
+      const productButtonTextInput = document.getElementById(
+        "product-button-text"
+      );
+      const productUrlInput = document.getElementById("product-url");
+      const productImageInput = document.getElementById("product-image");
+      const productImagePreview = document.getElementById(
+        "product-image-preview"
+      );
+      const productIconInput = document.getElementById("product-icon");
+      const productIconGrid = document.getElementById("product-icon-grid");
+      const productIconSearch = document.getElementById("product-icon-search");
+      const productTabs = document.querySelectorAll(".tab");
+      const productTabContents = document.querySelectorAll(".tab-content");
+      const addProductButton = document.getElementById("add-product-button");
+      const addProductLoading = document.getElementById("add-product-loading");
+      const addProductButtonText = document.getElementById(
+        "add-product-button-text"
+      );
+
+      // Blog Elements - NEW
+      const blogPostsList = document.getElementById("blog-posts-list");
+      const addBlogPostForm = document.getElementById("add-blog-post-form");
+      const blogPostTitleInput = document.getElementById("blog-post-title");
+      const blogPostDateInput = document.getElementById("blog-post-date");
+      const blogPostExcerptInput = document.getElementById("blog-post-excerpt");
+      const blogPostContentInput = document.getElementById("blog-post-content");
+      const blogPostImageInput = document.getElementById("blog-post-image");
+      const blogPostImagePreview = document.getElementById(
+        "blog-post-image-preview"
+      );
+      const addBlogPostButton = document.getElementById("add-blog-post-button");
+      const addBlogPostLoading = document.getElementById(
+        "add-blog-post-loading"
+      );
+      const addBlogPostButtonText = document.getElementById(
+        "add-blog-post-button-text"
       );
 
       // Links Elements
@@ -1788,6 +2231,19 @@
         "temperature-low",
         "wind",
         "rainbow",
+        "box",
+        "gift",
+        "tag",
+        "tags",
+        "store",
+        "shopping-bag",
+        "tshirt",
+        "shoe-prints",
+        "hat-cowboy",
+        "glasses",
+        "ring",
+        "gem",
+        "watch",
       ];
 
       // State
@@ -1801,9 +2257,13 @@
         accentColor: "#4f46e5",
         galleryBgColor: "#f9fafb",
         servicesBgColor: "#ffffff",
+        productsBgColor: "#f9fafb",
+        blogBgColor: "#ffffff",
         faqBgColor: "#ffffff",
         contactBgColor: "#f9fafb",
         servicesSectionTitle: "My Services",
+        productsSectionTitle: "My Products",
+        blogSectionTitle: "Latest Blog Posts",
         gallerySectionTitle: "My Gallery",
         infoSectionTitle: "Contact Information",
         faqSectionTitle: "Frequently Asked Questions",
@@ -1812,6 +2272,8 @@
         contactEmail: "",
         links: [],
         services: [],
+        products: [],
+        blogPosts: [],
         contactInfo: [],
         faqs: [],
         galleryImages: [],
@@ -1894,6 +2356,52 @@
         });
       }
 
+      // Initialize product icons
+      function initProductIcons() {
+        productIconGrid.innerHTML = "";
+
+        const searchTerm = productIconSearch.value.toLowerCase();
+        const filteredIcons = searchTerm
+          ? serviceIcons.filter((icon) => icon.includes(searchTerm))
+          : serviceIcons;
+
+        filteredIcons.forEach((icon) => {
+          const iconItem = document.createElement("div");
+          iconItem.className = "icon-item";
+          iconItem.dataset.icon = icon;
+
+          if (icon === productIconInput.value) {
+            iconItem.classList.add("selected");
+          }
+
+          const iconPreview = document.createElement("div");
+          iconPreview.className = "icon-preview";
+          iconPreview.innerHTML = `<i class="fas fa-${icon}"></i>`;
+
+          const iconName = document.createElement("div");
+          iconName.className = "icon-name";
+          iconName.textContent = icon;
+
+          iconItem.appendChild(iconPreview);
+          iconItem.appendChild(iconName);
+
+          iconItem.addEventListener("click", () => {
+            // Remove selected class from all icons
+            document.querySelectorAll(".icon-item").forEach((item) => {
+              item.classList.remove("selected");
+            });
+
+            // Add selected class to clicked icon
+            iconItem.classList.add("selected");
+
+            // Update hidden input
+            productIconInput.value = icon;
+          });
+
+          productIconGrid.appendChild(iconItem);
+        });
+      }
+
       // Fetch profile data
       async function fetchProfileData() {
         try {
@@ -1934,6 +2442,10 @@
         // Section titles
         servicesSectionTitleInput.value =
           data.servicesSectionTitle || "My Services";
+        productsSectionTitleInput.value =
+          data.productsSectionTitle || "My Products";
+        blogSectionTitleInput.value =
+          data.blogSectionTitle || "Latest Blog Posts";
         gallerySectionTitleInput.value =
           data.gallerySectionTitle || "My Gallery";
         infoSectionTitleInput.value =
@@ -1949,6 +2461,8 @@
         accentColorInput.value = data.accentColor || "#4f46e5";
         galleryBgColorInput.value = data.galleryBgColor || "#f9fafb";
         servicesBgColorInput.value = data.servicesBgColor || "#ffffff";
+        productsBgColorInput.value = data.productsBgColor || "#f9fafb";
+        blogBgColorInput.value = data.blogBgColor || "#ffffff";
         faqBgColorInput.value = data.faqBgColor || "#ffffff";
         contactBgColorInput.value = data.contactBgColor || "#f9fafb";
         backgroundColorPreview.style.backgroundColor =
@@ -1960,7 +2474,10 @@
           data.galleryBgColor || "#f9fafb";
         servicesBgColorPreview.style.backgroundColor =
           data.servicesBgColor || "#ffffff";
-        faqBgColorPreview.style.backgroundColor = data.faqBg;
+        productsBgColorPreview.style.backgroundColor =
+          data.productsBgColor || "#f9fafb";
+        blogBgColorPreview.style.backgroundColor =
+          data.blogBgColor || "#ffffff";
         faqBgColorPreview.style.backgroundColor = data.faqBgColor || "#ffffff";
         contactBgColorPreview.style.backgroundColor =
           data.contactBgColor || "#f9fafb";
@@ -1976,6 +2493,12 @@
 
         // Load services
         loadServices(data.services || []);
+
+        // Load products
+        loadProducts(data.products || []);
+
+        // Load blog posts
+        loadBlogPosts(data.blogPosts || []);
 
         // Load contact info
         loadContactInfo(data.contactInfo || []);
@@ -2104,6 +2627,154 @@
           serviceItem.appendChild(serviceActions);
 
           servicesList.appendChild(serviceItem);
+        });
+      }
+
+      // Load products - NEW
+      function loadProducts(products) {
+        productsList.innerHTML = "";
+
+        if (!products || products.length === 0) {
+          const emptyMessage = document.createElement("p");
+          emptyMessage.textContent = "No products added yet.";
+          emptyMessage.style.textAlign = "center";
+          emptyMessage.style.color = "#666";
+          emptyMessage.style.padding = "1rem";
+
+          productsList.appendChild(emptyMessage);
+          return;
+        }
+
+        products.forEach((product, index) => {
+          const productItem = document.createElement("div");
+          productItem.className = "product-item";
+
+          const productInfo = document.createElement("div");
+          productInfo.className = "product-info";
+
+          // Product image or icon
+          if (product.image) {
+            const productImage = document.createElement("img");
+            productImage.src = product.image;
+            productImage.alt = product.title;
+            productImage.className = "product-image-preview";
+            productInfo.appendChild(productImage);
+          } else if (product.icon) {
+            const productIcon = document.createElement("div");
+            productIcon.className = "product-icon";
+            productIcon.innerHTML = `<i class="fas fa-${product.icon}"></i>`;
+            productInfo.appendChild(productIcon);
+          }
+
+          const productContent = document.createElement("div");
+          productContent.className = "product-content";
+
+          const productTitle = document.createElement("div");
+          productTitle.className = "product-title";
+          productTitle.textContent = product.title;
+
+          const productDescription = document.createElement("div");
+          productDescription.className = "product-description";
+          productDescription.textContent = product.description;
+
+          const productPrice = document.createElement("div");
+          productPrice.className = "product-price";
+          productPrice.textContent = product.price;
+
+          productContent.appendChild(productTitle);
+          productContent.appendChild(productDescription);
+          productContent.appendChild(productPrice);
+
+          productInfo.appendChild(productContent);
+
+          const productActions = document.createElement("div");
+          productActions.className = "product-actions";
+
+          const deleteButton = document.createElement("button");
+          deleteButton.className = "button danger-button";
+          deleteButton.innerHTML = '<i class="fas fa-trash"></i>';
+          deleteButton.addEventListener("click", () => deleteProduct(index));
+
+          productActions.appendChild(deleteButton);
+
+          productItem.appendChild(productInfo);
+          productItem.appendChild(productActions);
+
+          productsList.appendChild(productItem);
+        });
+      }
+
+      // Load blog posts - NEW
+      function loadBlogPosts(posts) {
+        blogPostsList.innerHTML = "";
+
+        if (!posts || posts.length === 0) {
+          const emptyMessage = document.createElement("p");
+          emptyMessage.textContent = "No blog posts added yet.";
+          emptyMessage.style.textAlign = "center";
+          emptyMessage.style.color = "#666";
+          emptyMessage.style.padding = "1rem";
+
+          blogPostsList.appendChild(emptyMessage);
+          return;
+        }
+
+        posts.forEach((post, index) => {
+          const blogPostItem = document.createElement("div");
+          blogPostItem.className = "blog-post-item";
+
+          const blogPostInfo = document.createElement("div");
+          blogPostInfo.className = "blog-post-info";
+
+          if (post.image) {
+            const blogPostImage = document.createElement("img");
+            blogPostImage.src = post.image;
+            blogPostImage.alt = post.title;
+            blogPostImage.className = "blog-post-image-preview";
+            blogPostInfo.appendChild(blogPostImage);
+          } else {
+            const blogPostIcon = document.createElement("div");
+            blogPostIcon.className = "blog-post-icon";
+            blogPostIcon.innerHTML = '<i class="fas fa-blog"></i>';
+            blogPostInfo.appendChild(blogPostIcon);
+          }
+
+          const blogPostContent = document.createElement("div");
+          blogPostContent.className = "blog-post-content";
+
+          const blogPostTitle = document.createElement("div");
+          blogPostTitle.className = "blog-post-title";
+          blogPostTitle.textContent = post.title;
+
+          const blogPostDate = document.createElement("div");
+          blogPostDate.className = "blog-post-date";
+          blogPostDate.textContent = post.date;
+
+          const blogPostExcerpt = document.createElement("div");
+          blogPostExcerpt.className = "blog-post-content-preview";
+          blogPostExcerpt.textContent =
+            post.excerpt || post.content.substring(0, 100) + "...";
+
+          blogPostContent.appendChild(blogPostTitle);
+          blogPostContent.appendChild(blogPostDate);
+          blogPostContent.appendChild(blogPostExcerpt);
+
+          blogPostInfo.appendChild(blogPostContent);
+
+          const blogPostActions = document.createElement("div");
+          blogPostActions.className = "blog-post-actions";
+
+          const deleteButton = document.createElement("button");
+          deleteButton.className = "button danger-button";
+          deleteButton.innerHTML = '<i class="fas fa-trash"></i>';
+          deleteButton.addEventListener("click", () => deleteBlogPost(index));
+
+          blogPostActions.appendChild(deleteButton);
+
+          blogPostItem.appendChild(blogPostInfo);
+          blogPostItem.appendChild(blogPostActions);
+
+          blogPostsList.appendChild(blogPostItem);
         });
       }
 
@@ -2338,6 +3009,72 @@
         }
       }
 
+      // Delete product - NEW
+      async function deleteProduct(index) {
+        try {
+          const token = checkAuthStatus();
+
+          const response = await fetch(`/api/products/${index}`, {
+            method: "DELETE",
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+
+          if (!response.ok) {
+            throw new Error("Failed to delete product");
+          }
+
+          const data = await response.json();
+          profileData = data.profile;
+
+          // Update UI
+          loadProducts(profileData.products || []);
+
+          showNotification(
+            "success",
+            "Success",
+            "Product deleted successfully"
+          );
+        } catch (error) {
+          console.error("Error deleting product:", error);
+          showNotification("error", "Error", "Failed to delete product");
+        }
+      }
+
+      // Delete blog post - NEW
+      async function deleteBlogPost(index) {
+        try {
+          const token = checkAuthStatus();
+
+          const response = await fetch(`/api/blogPosts/${index}`, {
+            method: "DELETE",
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+
+          if (!response.ok) {
+            throw new Error("Failed to delete blog post");
+          }
+
+          const data = await response.json();
+          profileData = data.profile;
+
+          // Update UI
+          loadBlogPosts(profileData.blogPosts || []);
+
+          showNotification(
+            "success",
+            "Success",
+            "Blog post deleted successfully"
+          );
+        } catch (error) {
+          console.error("Error deleting blog post:", error);
+          showNotification("error", "Error", "Failed to delete blog post");
+        }
+      }
+
       // Delete contact info
       async function deleteContactInfo(index) {
         try {
@@ -2452,6 +3189,26 @@
           // Show selected section
           const sectionId = link.dataset.section;
           document.getElementById(sectionId).classList.remove("hidden");
+        });
+      });
+
+      // Product tabs
+      productTabs.forEach((tab) => {
+        tab.addEventListener("click", () => {
+          // Remove active class from all tabs
+          productTabs.forEach((t) => t.classList.remove("active"));
+
+          // Add active class to clicked tab
+          tab.classList.add("active");
+
+          // Hide all tab contents
+          productTabContents.forEach((content) =>
+            content.classList.remove("active")
+          );
+
+          // Show selected tab content
+          const tabId = tab.dataset.tab;
+          document.getElementById(tabId).classList.add("active");
         });
       });
 
@@ -2570,6 +3327,8 @@
             },
             body: JSON.stringify({
               servicesSectionTitle: servicesSectionTitleInput.value,
+              productsSectionTitle: productsSectionTitleInput.value,
+              blogSectionTitle: blogSectionTitleInput.value,
               gallerySectionTitle: gallerySectionTitleInput.value,
               infoSectionTitle: infoSectionTitleInput.value,
               faqSectionTitle: faqSectionTitleInput.value,
@@ -2624,6 +3383,8 @@
               accentColor: accentColorInput.value,
               galleryBgColor: galleryBgColorInput.value,
               servicesBgColor: servicesBgColorInput.value,
+              productsBgColor: productsBgColorInput.value,
+              blogBgColor: blogBgColorInput.value,
               faqBgColor: faqBgColorInput.value,
               contactBgColor: contactBgColorInput.value,
             }),
@@ -2749,6 +3510,153 @@
           addServiceButton.disabled = false;
           addServiceLoading.classList.add("hidden");
           addServiceButtonText.textContent = "Add Service";
+        }
+      });
+
+      // Add product form - NEW
+      addProductForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        try {
+          const token = checkAuthStatus();
+
+          // Show loading state
+          addProductButton.disabled = true;
+          addProductLoading.classList.remove("hidden");
+          addProductButtonText.textContent = "Adding...";
+
+          const formData = new FormData();
+          formData.append("title", productTitleInput.value);
+          formData.append("description", productDescriptionInput.value);
+          formData.append("price", productPriceInput.value);
+          formData.append("buttonText", productButtonTextInput.value);
+
+          if (productUrlInput.value) {
+            formData.append("url", productUrlInput.value);
+          }
+
+          // Check which tab is active
+          const isImageTab = document
+            .getElementById("product-image-tab")
+            .classList.contains("active");
+
+          if (isImageTab && productImageInput.files.length > 0) {
+            formData.append("productImage", productImageInput.files[0]);
+          } else if (!isImageTab) {
+            formData.append("icon", productIconInput.value);
+          }
+
+          const response = await fetch("/api/products", {
+            method: "POST",
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+            body: formData,
+          });
+
+          if (!response.ok) {
+            throw new Error("Failed to add product");
+          }
+
+          const data = await response.json();
+          profileData = data.profile;
+
+          // Update UI
+          loadProducts(profileData.products || []);
+
+          // Reset form
+          productTitleInput.value = "";
+          productDescriptionInput.value = "";
+          productPriceInput.value = "";
+          productButtonTextInput.value = "Learn More";
+          productUrlInput.value = "";
+          productImageInput.value = "";
+          productImagePreview.src = "/placeholder.svg";
+
+          showNotification("success", "Success", "Product added successfully");
+        } catch (error) {
+          console.error("Error adding product:", error);
+          showNotification("error", "Error", "Failed to add product");
+        } finally {
+          // Reset button state
+          addProductButton.disabled = false;
+          addProductLoading.classList.add("hidden");
+          addProductButtonText.textContent = "Add Product";
+        }
+      });
+
+      // Add blog post form - NEW
+      addBlogPostForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        try {
+          const token = checkAuthStatus();
+
+          // Show loading state
+          addBlogPostButton.disabled = true;
+          addBlogPostLoading.classList.remove("hidden");
+          addBlogPostButtonText.textContent = "Adding...";
+
+          const formData = new FormData();
+          formData.append("title", blogPostTitleInput.value);
+          formData.append(
+            "date",
+            blogPostDateInput.value ||
+              new Date().toLocaleDateString("en-US", {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              })
+          );
+          formData.append("content", blogPostContentInput.value);
+
+          if (blogPostExcerptInput.value) {
+            formData.append("excerpt", blogPostExcerptInput.value);
+          }
+
+          if (blogPostImageInput.files.length > 0) {
+            formData.append("blogPostImage", blogPostImageInput.files[0]);
+          }
+
+          const response = await fetch("/api/blogPosts", {
+            method: "POST",
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+            body: formData,
+          });
+
+          if (!response.ok) {
+            throw new Error("Failed to add blog post");
+          }
+
+          const data = await response.json();
+          profileData = data.profile;
+
+          // Update UI
+          loadBlogPosts(profileData.blogPosts || []);
+
+          // Reset form
+          blogPostTitleInput.value = "";
+          blogPostDateInput.value = "";
+          blogPostExcerptInput.value = "";
+          blogPostContentInput.value = "";
+          blogPostImageInput.value = "";
+          blogPostImagePreview.src = "/placeholder.svg";
+
+          showNotification(
+            "success",
+            "Success",
+            "Blog post added successfully"
+          );
+        } catch (error) {
+          console.error("Error adding blog post:", error);
+          showNotification("error", "Error", "Failed to add blog post");
+        } finally {
+          // Reset button state
+          addBlogPostButton.disabled = false;
+          addBlogPostLoading.classList.add("hidden");
+          addBlogPostButtonText.textContent = "Add Blog Post";
         }
       });
 
@@ -3004,6 +3912,34 @@
         }
       });
 
+      // Product image preview - NEW
+      productImageInput.addEventListener("change", (e) => {
+        if (productImageInput.files.length > 0) {
+          const file = productImageInput.files[0];
+          const reader = new FileReader();
+
+          reader.onload = (e) => {
+            productImagePreview.src = e.target.result;
+          };
+
+          reader.readAsDataURL(file);
+        }
+      });
+
+      // Blog post image preview - NEW
+      blogPostImageInput.addEventListener("change", (e) => {
+        if (blogPostImageInput.files.length > 0) {
+          const file = blogPostImageInput.files[0];
+          const reader = new FileReader();
+
+          reader.onload = (e) => {
+            blogPostImagePreview.src = e.target.result;
+          };
+
+          reader.readAsDataURL(file);
+        }
+      });
+
       // Color input previews
       backgroundColorInput.addEventListener("input", () => {
         backgroundColorPreview.style.backgroundColor =
@@ -3027,6 +3963,15 @@
           servicesBgColorInput.value;
       });
 
+      productsBgColorInput.addEventListener("input", () => {
+        productsBgColorPreview.style.backgroundColor =
+          productsBgColorInput.value;
+      });
+
+      blogBgColorInput.addEventListener("input", () => {
+        blogBgColorPreview.style.backgroundColor = blogBgColorInput.value;
+      });
+
       faqBgColorInput.addEventListener("input", () => {
         faqBgColorPreview.style.backgroundColor = faqBgColorInput.value;
       });
@@ -3040,6 +3985,26 @@
         initServiceIcons();
       });
 
+      // Product icon search - NEW
+      productIconSearch.addEventListener("input", () => {
+        initProductIcons();
+      });
+
+      // Set current date for blog post if empty
+      if (blogPostDateInput) {
+        blogPostDateInput.addEventListener("focus", () => {
+          if (!blogPostDateInput.value) {
+            const today = new Date();
+            const formattedDate = today.toLocaleDateString("en-US", {
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+            });
+            blogPostDateInput.value = formattedDate;
+          }
+        });
+      }
+
       // Initialize
       document.addEventListener("DOMContentLoaded", () => {
         // Check auth status
@@ -3050,6 +4015,9 @@
 
         // Initialize service icons
         initServiceIcons();
+
+        // Initialize product icons
+        initProductIcons();
       });
     </script>
   </body>
